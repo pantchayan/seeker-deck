@@ -1,0 +1,26 @@
+const jobObjArr = [
+  {
+    id: 0,
+    title: "SDE intern",
+    company: "Google",
+    timestamp: Date.now(),
+    description: "",
+    color: "green",
+    contactsId: [0, 1],
+    notes: "",
+    stateCategory: "Applied",
+    activitiesId: [0, 1],
+  },
+  {
+    id: 1,
+    title: "SDE",
+    company: "Amazon",
+    timestamp: Date.now(),
+    description: "",
+    color: "purple",
+    contactsId: [0, 1],
+    notes: "",
+    stateCategory: "Applied",
+    activitiesId: [0, 1],
+  },
+];

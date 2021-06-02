@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board</title>
+
+    <link
+      href="http://fonts.googleapis.com/css?family=Lato:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style/board.css" />
+  </head>
+  <body>
+    <div class="hide overlay"></div>
+    <div class="board-display">
+      <div class="side-nav"></div>
+
+      <div class="container">
+        <div class="top-bar"></div>
+
+        <div class="category-container">
+          <div id="wishlist" class="category">
+            <div class="add-job">
+              <div id="0" class="category-details">
+                <div class="name">
+                  <span class="material-icons-outlined"> auto_fix_high </span>
+                  <span>WISHLIST</span>
+                  <span class="material-icons-outlined"> more_horiz </span>
+                </div>
+                <div class="count">0 JOBS</div>
+              </div>
+              <div class="add-btn">
+                <span class="material-icons-outlined"> add </span>
+              </div>
+            </div>
+          </div>
+
+          <div id="applied" class="category">
+            <div class="add-job">
+              <div id="0" class="category-details">
+                <div class="name">
+                  <span class="material-icons-outlined"> content_paste </span>
+                  <span>APPLIED</span>
+                  <span class="material-icons-outlined"> more_horiz </span>
+                </div>
+                <div class="count">0 JOBS</div>
+              </div>
+              <div class="add-btn">
+                <span class="material-icons-outlined"> add </span>
+              </div>
+            </div>
+          </div>
+
+          <div id="test" class="category">
+            <div class="add-job">
+              <div id="0" class="category-details">
+                <div class="name">
+                  <span class="material-icons-outlined"> quiz </span>
+                  <span>TEST</span>
+                  <span class="material-icons-outlined"> more_horiz </span>
+                </div>
+                <div class="count">0 JOBS</div>
+              </div>
+              <div class="add-btn">
+                <span class="material-icons-outlined"> add </span>
+              </div>
+            </div>
+          </div>
+
+          <div id="interview" class="category">
+            <div class="add-job">
+              <div id="0" class="category-details">
+                <div class="name">
+                  <span class="material-icons-outlined"> business_center </span>
+                  <span>INTERVIEW</span>
+                  <span class="material-icons-outlined"> more_horiz </span>
+                </div>
+                <div class="count">0 JOBS</div>
+              </div>
+              <div class="add-btn">
+                <span class="material-icons-outlined"> add </span>
+              </div>
+            </div>
+          </div>
+
+          <div id="offer" class="category">
+            <div class="add-job">
+              <div id="0" class="category-details">
+                <div class="name">
+                  <span class="material-icons-outlined"> emoji_events </span>
+                  <span>OFFER</span>
+                  <span class="material-icons-outlined"> more_horiz </span>
+                </div>
+                <div class="count">0 JOBS</div>
+              </div>
+              <div class="add-btn">
+                <span class="material-icons-outlined"> add </span>
+              </div>
+            </div>
+          </div>
+
+          <div id="rejected" class="category">
+            <div class="add-job">
+              <div id="0" class="category-details">
+                <div class="name">
+                  <span class="material-icons-outlined"> thumb_down </span>
+                  <span>REJECTED</span>
+                  <span class="material-icons-outlined"> more_horiz </span>
+                </div>
+                <div class="count">0 JOBS</div>
+              </div>
+              <div class="add-btn">
+                <span class="material-icons-outlined"> add </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-category"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hide">
+      <a href="https://clearbit.com">Logos provided by Clearbit</a>
+    </div>
+
+    <div class="hide job-card-container">
+      <div class="add-job-card">
+        <div>Add Job</div>
+        <div class="job-inputs">
+          <input
+            type="text"
+            name="company"
+            id="company-input"
+            placeholder="Company"
+          />
+          <input
+            type="text"
+            name="role"
+            id="role-input"
+            placeholder="Job Title"
+          />
+          <select class="category-dropbox">
+            <option value="applied">Applied</option>
+            <option value="wishlist">Wishlist</option>
+            <option value="test">Test</option>
+            <option value="interview">Interview</option>
+            <option value="offer">Offer</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+        <div class="create-btns">
+          <button class="discard">Discard</button>
+          <button class="save">Save Job</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hide job-hiding">
+      <div class="job-description-container">
+        <div class="main-description-container">
+          <div class="top-bar-btns">
+            <button class="move">Move</button>
+            <button class="close">Close</button>
+          </div>
+          <div class="top-details">
+            <div class="logo">
+              <img
+                src="https://logo.clearbit.com/facebook.com?size=80"
+                alt=""
+                height="60px"
+                width="60px"
+              />
+            </div>
+            <div class="name-details">
+              <div class="role">SDE</div>
+              <div class="company">Facebook</div>
+            </div>
+          </div>
+          <div class="details-nav">
+            <div class="info active-div">
+              <span class="material-icons-outlined"> info </span>Job Info
+            </div>
+            <div class="activities">
+              <span class="material-icons-outlined"> menu </span>Activities
+            </div>
+            <div class="notes">
+              <span class="material-icons-outlined"> description </span>Notes
+            </div>
+            <div class="contacts">
+              <span class="material-icons-outlined"> people </span>Contacts
+            </div>
+          </div>
+
+          <div class="mid-container">
+            <div class="details-container">
+              <div class="info-container">
+                <div class="company"></div>
+                <div class="title"></div>
+                <div class="deadline"></div>
+                <div class="url"></div>
+                <div class="salary"></div>
+                <div class="status"></div>
+                <div class="location"></div>
+                <div class="color"></div>
+                <div class="description"></div>
+              </div>
+              <!-- <div class="activities-container"></div>
+              <div class="notes-container"></div>
+              <div class="contacts-container"></div> -->
+            </div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-head">Timeline</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/utilities.js" defer></script>
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js" defer></script>
+    <script src="./scripts/boardDB.js" defer></script>
+    <script src="./scripts/board.js" defer></script>
+
+    <script src="./scripts/boardAnimations.js" defer></script>
+    <!-- <script defer>renderBoardUI();</script> -->
+  </body>
+</html>
