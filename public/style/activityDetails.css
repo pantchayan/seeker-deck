@@ -1,0 +1,114 @@
+.tags-row {
+  display: flex;
+
+  align-items: center;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.tags {
+  display: flex;
+  /* overflow-x: auto;
+  scrollbar-width: thin; */
+}
+.tags-row > span {
+  font-size: 20px;
+  /* border-right: 0.5px solid rgba(25, 4, 69, 0.1); */
+  padding-right: 5px;
+}
+
+.tag {
+  font-size: 11px;
+  min-width: fit-content;
+  height: 27px;
+  margin-left: 5px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+  border-radius: 5px;
+  padding: 5px;
+  color: rgba(25, 4, 69, 0.7);
+}
+
+.tag.active {
+  color: rgb(24, 0, 69);
+  font-weight: 700;
+  transform: scale(1.1);
+}
+
+.tags:hover {
+  cursor: pointer;
+}
+
+.text-input {
+  margin: 10px;
+  width: calc(100% - 20px);
+}
+
+.notes-input > textarea,
+.text-input > textarea {
+  width: 100%;
+  font-size: 15px;
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+}
+
+.notes-input .save-btn,
+.activity-input .save-btn {
+  position: relative;
+  left: calc(100% - 90px);
+  font-weight: 500;
+  min-width: 70px;
+  height: 27px;
+  margin-left: 5px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+  border-radius: 5px;
+  color: #fff;
+  background-color: #6a4feb;
+}
+
+.notes-input .save-btn:hover,
+.activity-input .save-btn:hover {
+  cursor: pointer;
+}
+
+#notes-input:focus,
+#activity-input:focus {
+  outline-color: #6a4feb;
+}
+
+.notes-container {
+  overflow-x: auto;
+}
+
+.note {
+  height: 10rem;
+  width: 9rem;
+  margin: 10px;
+  padding:5px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+}
+
+.note-content {
+  height: 8rem;
+}
+
+.note-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(24, 0, 69);
+}
+
+.note-details>.time {
+       font-size:11px;
+}
+
+.note-details>.note-delete-btn:hover{
+       cursor:pointer;
+}
+
+.note-blocks{
+       display:flex;
+}

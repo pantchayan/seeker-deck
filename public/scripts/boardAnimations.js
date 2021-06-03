@@ -1,3 +1,74 @@
+let coloumnsArr = document.querySelectorAll(".category");
+
+let onDragStart = (event) => {
+  // console.log("dragging");
+  event.dataTransfer.setData("text/plain", event.target.id);
+};
+
+let onDragOver = (event) => {
+  // console.log("dropping");
+  event.preventDefault();
+};
+
+let onDrop = (event) => {
+  // console.log("dropped");
+  const id = event.dataTransfer.getData("text");
+  const draggableElement = document.getElementById(id);
+  const dropzone = event.target;
+
+  // console.log(draggableElement);
+  if (
+    !(
+      dropzone.classList.contains("category") &&
+      draggableElement.classList.contains("job-container")
+    )
+  )
+    return;
+
+  dropzone.appendChild(draggableElement);
+
+  event.dataTransfer.clearData();
+
+  // changes in DB;
+  updateDB(draggableElement.id, dropzone.id);
+};
+
+let updateDB = async (id, newCategory) => {
+  try {
+    // console.log(id, newCategory);
+    await db.jobs.update(Number(id), { category: newCategory });
+
+    let activityObject = {
+      id: activityId,
+      tag: "Moved",
+      title: `Job of id ${id} was shifted to ${newCategory}`,
+      description: "",
+      state: "complete",
+      timestamp: Date.now(),
+      jobsID: [Number(id)],
+    };
+
+    await db.activities.put(activityObject);
+
+    activityId++;
+    myStorage.setItem(
+      "seekerKeys",
+      JSON.stringify({ jobId, activityId, contactId })
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+for (let i = 0; i < coloumnsArr.length; i++) {
+  coloumnsArr[i].addEventListener("dragover", (e) => {
+    onDragOver(e);
+  });
+  coloumnsArr[i].addEventListener("drop", (e) => {
+    onDrop(e);
+  });
+}
+
 (async () => {
   await renderBoardUI();
 
@@ -22,27 +93,13 @@
     jobContainer.addEventListener("mouseout", () => {
       deleteBtn.classList.add("hide");
     });
+
+    jobContainer.addEventListener("dragstart", (e) => {
+      onDragStart(e);
+    });
+
+    jobContainer.addEventListener("click", async (e) => {
+      await renderJobDetails(jobContainer.id);
+    });
   }
 })();
-
-
-
-// let deleteJobData = (id, title, company) => {
-//   (async () => {
-//     let newJobsData = await db.jobs.delete(id);
-//     console.table(newJobsData);
-//   })();
-
-//   let activityObject = {
-//     id: activityId,
-//     tag: "Deleted",
-//     title: `Job for ${title} at ${company} was deleted`,
-//     description: "",
-//     state: "complete",
-//     jobsID: [id],
-//   };
-
-//   (async () => {
-//     await db.activities.put(activityObject);
-//   })();
-// };

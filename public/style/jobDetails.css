@@ -1,0 +1,137 @@
+.mid-container {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+
+.info-container {
+  z-index: 4;
+  padding-top: 10px;
+}
+
+.info-container > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.info-container > div > div {
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 20px;
+       margin-right: 20px; */
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.info-container > div > div > input:focus,
+.info-container > div > div > select:focus {
+  outline-color: #6a4feb;
+}
+
+.info-container > div > div > span {
+  color: rgb(24, 0, 69);
+  font-weight: 600;
+}
+
+.info-container > div > div > input {
+  font-size: 15px;
+  margin-top: 12px;
+  height: 2.5rem;
+  width: 10rem;
+  padding: 10px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+  /* margin-bottom: 12px; */
+}
+
+#description-input {
+  width: 17rem;
+  height: 5rem;
+  font-size: 15px;
+  margin-top: 12px;
+  width: 10rem;
+  padding: 10px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+}
+
+#description-input:focus,
+#description-input:focus {
+  outline-color: #6a4feb;
+}
+
+.row1 > div > input {
+  min-width: 13rem;
+}
+
+#url-input {
+  min-width: 17rem;
+}
+
+#salary-input {
+  max-width: 9rem;
+}
+
+#deadline-input {
+  min-width: 13rem;
+}
+
+#description-input {
+  min-width: 22.5rem;
+}
+
+#location-input {
+  width: 18rem;
+}
+
+.color {
+  margin: 20px;
+  height: 5rem;
+  width: 80%;
+  background-color: rgba(25, 4, 69, 0.1);
+}
+
+.current-color {
+  background-color: #6a4feb;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 20px;
+}
+
+.color-input {
+  margin-top: 20px;
+}
+
+.color-box {
+  background-color: #6a4feb;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 20px;
+}
+
+.color-box:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.color-box .active-color {
+  transform: scale(1.5);
+  /* min-height: 2.5rem;
+  min-width: 2.5rem; */
+}
+
+.info-container .save-btn {
+  position: relative;
+  left: calc(100% - 90px);
+  font-weight: 500;
+  min-width: 70px;
+  height: 27px;
+  margin-left: 5px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+  border-radius: 5px;
+  color: #fff;
+  background-color: #6a4feb;
+}
+
+.info-container .save-btn:hover {
+  cursor: pointer;
+}

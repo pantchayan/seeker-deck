@@ -18,6 +18,8 @@
     />
 
     <link rel="stylesheet" href="./style/board.css" />
+    <link rel="stylesheet" href="./style/jobDetails.css" />
+    <link rel="stylesheet" href="./style/activityDetails.css" />
   </head>
   <body>
     <div class="hide overlay"></div>
@@ -30,7 +32,7 @@
         <div class="category-container">
           <div id="wishlist" class="category">
             <div class="add-job">
-              <div id="0" class="category-details">
+              <div id="0-category" class="category-details">
                 <div class="name">
                   <span class="material-icons-outlined"> auto_fix_high </span>
                   <span>WISHLIST</span>
@@ -46,7 +48,7 @@
 
           <div id="applied" class="category">
             <div class="add-job">
-              <div id="0" class="category-details">
+              <div id="1-category" class="category-details">
                 <div class="name">
                   <span class="material-icons-outlined"> content_paste </span>
                   <span>APPLIED</span>
@@ -62,7 +64,7 @@
 
           <div id="test" class="category">
             <div class="add-job">
-              <div id="0" class="category-details">
+              <div id="2--category" class="category-details">
                 <div class="name">
                   <span class="material-icons-outlined"> quiz </span>
                   <span>TEST</span>
@@ -78,7 +80,7 @@
 
           <div id="interview" class="category">
             <div class="add-job">
-              <div id="0" class="category-details">
+              <div id="3--category" class="category-details">
                 <div class="name">
                   <span class="material-icons-outlined"> business_center </span>
                   <span>INTERVIEW</span>
@@ -94,7 +96,7 @@
 
           <div id="offer" class="category">
             <div class="add-job">
-              <div id="0" class="category-details">
+              <div id="4-category" class="category-details">
                 <div class="name">
                   <span class="material-icons-outlined"> emoji_events </span>
                   <span>OFFER</span>
@@ -110,7 +112,7 @@
 
           <div id="rejected" class="category">
             <div class="add-job">
-              <div id="0" class="category-details">
+              <div id="5-category" class="category-details">
                 <div class="name">
                   <span class="material-icons-outlined"> thumb_down </span>
                   <span>REJECTED</span>
@@ -165,7 +167,7 @@
       </div>
     </div>
 
-    <div class="hide job-hiding">
+    <div class="hide job-details-hiding">
       <div class="job-description-container">
         <div class="main-description-container">
           <div class="top-bar-btns">
@@ -202,22 +204,206 @@
           </div>
 
           <div class="mid-container">
-            <div class="details-container">
-              <div class="info-container">
-                <div class="company"></div>
-                <div class="title"></div>
-                <div class="deadline"></div>
-                <div class="url"></div>
-                <div class="salary"></div>
-                <div class="status"></div>
-                <div class="location"></div>
-                <div class="color"></div>
-                <div class="description"></div>
+            <div class="info-container">
+              <div class="row1">
+                <div class="company">
+                  <span>Company</span>
+                  <input
+                    type="text"
+                    name="company"
+                    id="company-detail"
+                    placeholder="Company"
+                  />
+                </div>
+                <div class="title">
+                  <span>Job title</span>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title-detail"
+                    placeholder="Job title"
+                  />
+                </div>
+                <div class="status-category">
+                  <span>Status</span>
+                  <input
+                    type="text"
+                    name="category"
+                    id="category-detail"
+                    placeholder="Status"
+                  />
+                </div>
               </div>
-              <!-- <div class="activities-container"></div>
+
+              <div class="row2">
+                <div class="url">
+                  <span>Post URL</span>
+                  <input
+                    type="text"
+                    name="url"
+                    id="url-input"
+                    placeholder="+ add URL"
+                  />
+                </div>
+                <div class="salary">
+                  <span>Salary</span>
+                  <input
+                    type="text"
+                    name="salary"
+                    id="salary-input"
+                    placeholder="+ add Salary"
+                  />
+                </div>
+                <div class="deadline">
+                  <span>Deadline</span>
+                  <input
+                    type="date"
+                    name="deadline"
+                    id="deadline-input"
+                    placeholder="+ set Date"
+                  />
+                </div>
+              </div>
+
+              <div class="row3">
+                <div class="description">
+                  <span>Description</span>
+                  <textarea
+                    name="description"
+                    id="description-input"
+                    cols="30"
+                    rows="10"
+                    placeholder="+ add Description"
+                  ></textarea>
+                </div>
+                <div class="location">
+                  <span>Location</span>
+                  <input
+                    type="text"
+                    name="location"
+                    id="location-input"
+                    placeholder="+ add Location"
+                  />
+                </div>
+              </div>
+
+              <div class="color-input">
+                <div class="color-box active-color"></div>
+                <div class="color-box"></div>
+                <div class="color-box"></div>
+                <div class="color-box"></div>
+                <div class="color-box"></div>
+                <div class="color-box"></div>
+              </div>
+              <button class="save-btn">Save</button>
+            </div>
+            <!-- <div class="activities-container"></div>
               <div class="notes-container"></div>
               <div class="contacts-container"></div> -->
+            <!-- ACTIVITIES -->
+            <div class="hide activities-container">
+              <div class="activity-input">
+                <div class="tags-row">
+                  <span class="material-icons-outlined"> local_offer </span>
+                  <div class="tags">
+                    <div class="tag active">Follow Up</div>
+                    <div class="tag">Reach Out</div>
+                    <div class="tag">Send Availability</div>
+                    <div class="tag">Apply</div>
+                    <div class="tag">Prep Cover Letter</div>
+                    <div class="tag">Prep Resume</div>
+                    <div class="tag">Prep for Interview</div>
+                    <div class="tag">Phone Screen</div>
+                  </div>
+                </div>
+                <div class="text-input">
+                  <textarea
+                    name="activity"
+                    id="activity-input"
+                    cols="20"
+                    rows="10"
+                    placeholder="+ Enter Details"
+                  ></textarea>
+                </div>
+                <button class="save-btn">Save</button>
+              </div>
             </div>
+            <!-- ACTIVITIES END -->
+
+            <!-- NOTES -->
+            <div class="hide notes-container">
+              <div class="notes-input">
+                <div class="text-input">
+                  <textarea
+                    name="notes"
+                    id="notes-input"
+                    cols="20"
+                    rows="10"
+                    placeholder="+ Enter Details"
+                  ></textarea>
+                  <button class="save-btn">Save</button>
+                </div>
+
+                <div class="note-blocks">
+                  <div class="note">
+                    <div class="note-content">asugfdauisgfiakf</div>
+                    <div class="note-details">
+                      <span class="time">0s</span>
+                      <div class="note-delete-btn">
+                        <span class="material-icons-outlined"> delete </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="note">
+                    <div class="note-content">asugfdauisgfiakf</div>
+                    <div class="note-details">
+                      <span class="time">0s</span>
+                      <div class="note-delete-btn">
+                        <span class="material-icons-outlined"> delete </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="note">
+                    <div class="note-content">asugfdauisgfiakf</div>
+                    <div class="note-details">
+                      <span class="time">0s</span>
+                      <div class="note-delete-btn">
+                        <span class="material-icons-outlined"> delete </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="note">
+                    <div class="note-content">asugfdauisgfiakf</div>
+                    <div class="note-details">
+                      <span class="time">0s</span>
+                      <div class="note-delete-btn">
+                        <span class="material-icons-outlined"> delete </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="note">
+                    <div class="note-content">asugfdauisgfiakf</div>
+                    <div class="note-details">
+                      <span class="time">0s</span>
+                      <div class="note-delete-btn">
+                        <span class="material-icons-outlined"> delete </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="note">
+                    <div class="note-content">asugfdauisgfiakf</div>
+                    <div class="note-details">
+                      <span class="time">0s</span>
+                      <div class="note-delete-btn">
+                        <span class="material-icons-outlined"> delete </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- NOTES -->
+
           </div>
         </div>
         <div class="timeline">
@@ -226,12 +412,13 @@
       </div>
     </div>
 
-    <script src="scripts/utilities.js" defer></script>
+    
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js" defer></script>
     <script src="./scripts/boardDB.js" defer></script>
+    <script src="scripts/utilities.js" defer></script>
     <script src="./scripts/board.js" defer></script>
-
     <script src="./scripts/boardAnimations.js" defer></script>
+    <script src="./scripts/jobDetail.js" defer></script>
     <!-- <script defer>renderBoardUI();</script> -->
   </body>
 </html>

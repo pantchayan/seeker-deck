@@ -1,6 +1,14 @@
 const jobAddBtnArr = document.querySelectorAll(".add-btn");
-const addCard = document.querySelector(".job-card-container");
-const overlay = document.querySelector(".overlay");
+
+const colors = [
+  "#0070fb",
+  "#25c47b",
+  "#ff3300",
+  "#6a4feb",
+  "#ffcd60",
+  "#1c3554",
+];
+
 let discardBtn = document.querySelector(".discard");
 let saveBtn = document.querySelector(".create-btns>.save");
 
@@ -34,12 +42,13 @@ let getJobInput = () => {
 
 let saveJobInput = (company, title, category) => {
   //   console.log(jobId, activityId);
+
   let jobObject = {
     id: jobId,
     title: title,
     company: company,
     timestamp: Date.now(),
-    color: "green",
+    colorId: colorId,
     category: category,
     activitiesId: [activityId],
   };
@@ -54,16 +63,28 @@ let saveJobInput = (company, title, category) => {
     jobsID: [jobId],
   };
 
+  let jobDetailsObject = {
+    id: jobId,
+    deadline: "",
+    url: "",
+    salary: "",
+    location: "",
+    description: "",
+    contactsId: [],
+  };
+
   (async () => {
     await db.jobs.put(jobObject);
     await db.activities.put(activityObject);
+    await db.jobsDetails.put(jobDetailsObject);
   })();
 
   jobId++;
   activityId++;
+  colorId = (colorId + 1) % 6;
   myStorage.setItem(
     "seekerKeys",
-    JSON.stringify({ jobId, activityId, contactId })
+    JSON.stringify({ jobId, activityId, contactId, colorId })
   );
 
   renderJobCard(jobObject);
@@ -74,7 +95,7 @@ let renderJobCard = (job) => {
   let title = job.title;
   let time = getPassedTime(job.timestamp);
   let category = job.category;
-
+  let jobColor = colors[job.colorId];
   let jobCard = document.createElement("div");
   jobCard.innerHTML = `<div class="role-row">
                 <img
@@ -95,6 +116,10 @@ let renderJobCard = (job) => {
             </div>`;
   jobCard.classList.add("job-container");
   jobCard.setAttribute("id", job.id);
+  //  draggable = "true";
+  jobCard.setAttribute("draggable", true);
+
+  jobCard.style.backgroundColor = jobColor;
 
   const categoryContainer = document.getElementById(category);
   //   console.log(categoryContainer, category);
@@ -114,71 +139,20 @@ let renderJobCard = (job) => {
   jobCard.addEventListener("mouseout", (e) => {
     deleteBtn.classList.add("hide");
   });
+
+  jobCard.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", e.target.id);
+  });
+
+  jobCard.addEventListener("click", async (e) => {
+    await renderJobDetails(job.id);
+  });
 };
-
-let viewJobCard = () => {
-  addCard.classList.remove("hide");
-  overlay.classList.remove("hide");
-};
-
-let hideJobCard = () => {
-  addCard.classList.add("hide");
-  overlay.classList.add("hide");
-  const companyInput = document.getElementById("company-input");
-  const titleInput = document.getElementById("role-input");
-  const categoryInput = document.querySelector(".category-dropbox");
-
-  companyInput.value = "";
-  titleInput.value = "";
-  categoryInput.value = "applied";
-};
-
-let getJobData = async () => {
-  let jobsData = await db.jobs.toArray();
-  return jobsData;
-};
-
-let renderBoardUI = async () => {
-  let jobsData = await getJobData();
-  //   console.table(jobsData);
-
-  for (let i = 0; i < jobsData.length; i++) {
-    let job = jobsData[i];
-    let company = job.company;
-    let title = job.title;
-    let time = getPassedTime(job.timestamp);
-    let category = job.category;
-
-    let jobCard = document.createElement("div");
-    jobCard.innerHTML = `<div class="role-row">
-                <img
-                  src="https://logo.clearbit.com/${company}.com?size=40"
-                  alt=""
-                  height="30px"
-                  width="30px"
-                />
-                <span class="role">${title}</span>
-              </div>
-              <span class="material-icons-outlined delete-btn hide"> delete </span>
-
-              <div class="company-name">${company}</div>
-              <span class="time-created"
-                >${time}
-                <span class="material-icons-outlined"> schedule </span></span
-              >
-            </div>`;
-    jobCard.classList.add("job-container");
-    jobCard.setAttribute("id", job.id);
-
-    const categoryContainer = document.getElementById(category);
-    categoryContainer.appendChild(jobCard);
-  }
-};
-
 
 let deleteJobData = (id, title, company) => {
   (async () => {
-     await db.jobs.delete(id);
+    await db.jobs.delete(id);
+    await db.jobsDetails.delete(id);
   })();
 
   let activityObject = {
@@ -194,4 +168,10 @@ let deleteJobData = (id, title, company) => {
   (async () => {
     await db.activities.put(activityObject);
   })();
+
+  activityId++;
+  myStorage.setItem(
+    "seekerKeys",
+    JSON.stringify({ jobId, activityId, contactId, colorId })
+  );
 };
