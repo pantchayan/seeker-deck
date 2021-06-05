@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="./style/board.css" />
     <link rel="stylesheet" href="./style/jobDetails.css" />
     <link rel="stylesheet" href="./style/activityDetails.css" />
+    <link rel="stylesheet" href="./style/timeline.css" />
+    <link rel="stylesheet" href="./style/contact.css" />
   </head>
   <body>
     <div class="hide overlay"></div>
@@ -184,10 +186,12 @@
               />
             </div>
             <div class="name-details">
-              <div class="role">SDE</div>
-              <div class="company">Facebook</div>
+              <div class="role">ROLE</div>
+              <div class="company">COMPANY</div>
             </div>
+            <div class="job-id">Job:#123</div>
           </div>
+
           <div class="details-nav">
             <div class="info active-div">
               <span class="material-icons-outlined"> info </span>Job Info
@@ -204,6 +208,7 @@
           </div>
 
           <div class="mid-container">
+            <!-- INFORMATION -->
             <div class="info-container">
               <div class="row1">
                 <div class="company">
@@ -297,9 +302,8 @@
               </div>
               <button class="save-btn">Save</button>
             </div>
-            <!-- <div class="activities-container"></div>
-              <div class="notes-container"></div>
-              <div class="contacts-container"></div> -->
+            <!-- INFORMATION -->
+
             <!-- ACTIVITIES -->
             <div class="hide activities-container">
               <div class="activity-input">
@@ -327,6 +331,13 @@
                 </div>
                 <button class="save-btn">Save</button>
               </div>
+              <div class="activities">
+                <div class="head-row">
+                  <div>Activity</div>
+                  <div>Tag</div>
+                  <div>Created</div>
+                </div>
+              </div>
             </div>
             <!-- ACTIVITIES END -->
 
@@ -344,75 +355,127 @@
                   <button class="save-btn">Save</button>
                 </div>
 
-                <div class="note-blocks">
-                  <div class="note">
-                    <div class="note-content">asugfdauisgfiakf</div>
-                    <div class="note-details">
-                      <span class="time">0s</span>
-                      <div class="note-delete-btn">
-                        <span class="material-icons-outlined"> delete </span>
-                      </div>
-                    </div>
+                <div class="note-blocks"></div>
+              </div>
+            </div>
+            <!-- NOTES -->
+
+            <!-- CONTACTS -->
+            <div class="hide contacts-container">
+              <div class="contacts-inputs">
+                <div class="contact-row1">
+                  <div class="contact-first-name">
+                    <span>First Name</span>
+                    <input
+                      type="text"
+                      name="first-name"
+                      id="first-name-input"
+                      placeholder="+ enter First Name"
+                    />
                   </div>
-                  <div class="note">
-                    <div class="note-content">asugfdauisgfiakf</div>
-                    <div class="note-details">
-                      <span class="time">0s</span>
-                      <div class="note-delete-btn">
-                        <span class="material-icons-outlined"> delete </span>
-                      </div>
-                    </div>
+                  <div class="contact-second-name">
+                    <span>Last Name</span>
+                    <input
+                      type="text"
+                      name="second-name"
+                      id="second-name-input"
+                      placeholder="+ enter Last Name"
+                    />
                   </div>
-                  <div class="note">
-                    <div class="note-content">asugfdauisgfiakf</div>
-                    <div class="note-details">
-                      <span class="time">0s</span>
-                      <div class="note-delete-btn">
-                        <span class="material-icons-outlined"> delete </span>
-                      </div>
-                    </div>
+                  <div class="contact-title">
+                    <span>Title</span>
+                    <input
+                      type="text"
+                      name="contact-title"
+                      id="contact-title-input"
+                      placeholder="+ enter Title"
+                    />
                   </div>
-                  <div class="note">
-                    <div class="note-content">asugfdauisgfiakf</div>
-                    <div class="note-details">
-                      <span class="time">0s</span>
-                      <div class="note-delete-btn">
-                        <span class="material-icons-outlined"> delete </span>
-                      </div>
-                    </div>
+                </div>
+                <div class="contact-row2">
+                  <div class="contact-location">
+                    <span>Location</span>
+                    <input
+                      type="text"
+                      name="contact-location"
+                      id="contact-location-input"
+                      placeholder="+ enter Location"
+                    />
                   </div>
-                  <div class="note">
-                    <div class="note-content">asugfdauisgfiakf</div>
-                    <div class="note-details">
-                      <span class="time">0s</span>
-                      <div class="note-delete-btn">
-                        <span class="material-icons-outlined"> delete </span>
-                      </div>
-                    </div>
+                  <div class="contact-phone">
+                    <span>Phone</span>
+                    <input
+                      type="text"
+                      name="contact-phone"
+                      id="contact-phone-input"
+                      placeholder="+ enter Phone number"
+                    />
                   </div>
-                  <div class="note">
-                    <div class="note-content">asugfdauisgfiakf</div>
-                    <div class="note-details">
-                      <span class="time">0s</span>
-                      <div class="note-delete-btn">
-                        <span class="material-icons-outlined"> delete </span>
+                  <div class="contact-email">
+                    <span>Email</span>
+                    <input
+                      type="text"
+                      name="contact-email"
+                      id="contact-email-input"
+                      placeholder="+ enter Email"
+                    />
+                  </div>
+                </div>
+                <div class="contact-row3">
+                  <div class="contact-linkedin">
+                    <span>LinkedIn handle</span>
+                    <input
+                      type="text"
+                      name="contact-phone"
+                      id="contact-linkedin-input"
+                      placeholder="+ enter Handle"
+                    />
+                  </div>
+                  <div class="contact-company">
+                    <span>Company</span>
+                    <div>Company Name</div>
+                  </div>
+                </div>
+              </div>
+              <button class="create-btn">Create</button>
+              <div class="contact-blocks-wrapper">
+                <div class="contact-blocks">
+                  <div class="contact-block">
+                    <div class="icon">
+                      <span class="material-icons-outlined"> portrait </span>
+                    </div>
+                    <div class="contact-info">
+                      <div class="contact-block-name">ABCD</div>
+                      <div class="block-row">
+                        <div class="contact-block-title">SDE</div>
+                        <div class="contact-block-location">Greater Noida</div>
+                      </div>
+                      <div class="contact-block-phone">999999999</div>
+                      <div class="contact-block-email">xyz@gmail.com</div>
+                      <div class="contact-block-linkedin">
+                        <img
+                          src="./images/linkedin-svg.svg"
+                          alt="."
+                          height="15px"
+                          width="15px"
+                        />@xyz123
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- NOTES -->
-
+            <!-- CONTACTS -->
           </div>
         </div>
         <div class="timeline">
           <div class="timeline-head">Timeline</div>
+          <div class="stages"></div>
+          <div class="end-stage">...</div>
         </div>
       </div>
     </div>
 
-    
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js" defer></script>
     <script src="./scripts/boardDB.js" defer></script>
     <script src="scripts/utilities.js" defer></script>

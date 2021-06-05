@@ -23,9 +23,9 @@ const db = new Dexie("seekerDB");
 db.version(1).stores({
   jobs: "id, title, company, timestamp, color, category, activitesId",
   activities: "id, tag, title, description, state, jobsId",
-  contacts: "id, name, company, link",
+  contacts: "id, name, company, title, location, phone, email, linkedin",
   jobsDetails:
-    "id, deadline, url, salary, location, description, contactsId, activitesId",
+    "id, deadline, url, salary, location, description, contactsId, activitesId, notes",
 });
 
 // // UPDATE/ADD DATA

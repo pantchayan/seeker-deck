@@ -285,9 +285,9 @@ body {
 
 .job-description-container {
   z-index: 3;
+  /* overflow-x: auto; */
   background-color: #fff;
   position: absolute;
-  z-index: 3;
   top: 5%;
   left: 20%;
   height: 95%;
@@ -363,6 +363,15 @@ body {
   color: rgba(25, 4, 69, 0.7);
 }
 
+.main-description-container .job-id {
+  position: absolute;
+
+  top: 135px;
+  right: 190px;
+  font-size: 11px;
+  color: rgba(25, 4, 69, 0.7);
+}
+
 .details-nav {
   display: flex;
   justify-content: space-around;
@@ -391,22 +400,4 @@ body {
 .details-nav > div > span {
   margin-right: 9px;
 }
-
-.timeline {
-  background-color: rgb(242, 241, 247);
-  width: 20%;
-  height: 100%;
-}
-
-.timeline-head {
-  color: rgb(24, 0, 69);
-  font-weight: 700;
-  margin-top: 10px;
-  margin-left: 10px;
-  padding-bottom: 10px;
-  margin-right: 10px;
-  border-bottom: 0.5px solid rgba(25, 4, 69, 0.7);
-}
-
-
 

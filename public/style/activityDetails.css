@@ -31,7 +31,8 @@
 }
 
 .tag.active {
-  color: rgb(24, 0, 69);
+  color: #fff;
+  background-color: #6a4feb;
   font-weight: 700;
   transform: scale(1.1);
 }
@@ -58,6 +59,7 @@
 .activity-input .save-btn {
   position: relative;
   left: calc(100% - 90px);
+  /* bottom: 10px; */
   font-weight: 500;
   min-width: 70px;
   height: 27px;
@@ -67,6 +69,52 @@
   color: #fff;
   background-color: #6a4feb;
 }
+.activity-input .save-btn {
+  bottom: 10px;
+}
+
+.activity-container  {
+  overflow-y: auto !important;
+}
+
+.head-row {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+}
+
+.head-row > div:nth-child(1) {
+  min-width: 18rem;
+}
+
+.activity-content {
+  display: flex;
+  /* justify-content: space-evenly; */
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
+.content-value {
+  min-width: 25rem;
+}
+
+.tag-value {
+  font-size: 11px;
+  min-width: fit-content;
+  max-height: 30px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+  border-radius: 5px;
+  padding: 2px;
+  color: rgba(25, 4, 69, 0.7);
+  /* transform: scale(1.05); */
+}
+
+.time-value {
+  position: absolute;
+  right: 15rem;
+}
+
+/* NOTES CONTAINER */
 
 .notes-input .save-btn:hover,
 .activity-input .save-btn:hover {
@@ -79,14 +127,14 @@
 }
 
 .notes-container {
-  overflow-x: auto;
+  overflow: auto;
 }
 
 .note {
   height: 10rem;
-  width: 9rem;
+  min-width: 9rem;
   margin: 10px;
-  padding:5px;
+  padding: 5px;
   border: 1px solid rgba(25, 4, 69, 0.1);
 }
 
@@ -101,14 +149,14 @@
   color: rgb(24, 0, 69);
 }
 
-.note-details>.time {
-       font-size:11px;
+.note-details > .time {
+  font-size: 11px;
 }
 
-.note-details>.note-delete-btn:hover{
-       cursor:pointer;
+.note-details > .note-delete-btn:hover {
+  cursor: pointer;
 }
 
-.note-blocks{
-       display:flex;
+.note-blocks {
+  display: flex;
 }

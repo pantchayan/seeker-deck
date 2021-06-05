@@ -1,0 +1,66 @@
+.timeline {
+  background-color: rgba(25, 4, 69, 0.1);
+  width: 20%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.timeline-head {
+  color: rgb(24, 0, 69);
+  font-weight: 700;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding-bottom: 10px;
+  margin-right: 10px;
+  border-bottom: 0.5px solid rgba(25, 4, 69, 0.7);
+}
+
+.stages,
+.end-stage {
+  margin-left: 12px;
+}
+
+.stages {
+  margin-top: 10px;
+}
+
+.stage-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  background-color: black;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.next-line {
+  margin-left: 2px;
+  margin-bottom: 2px;
+  height: 20px;
+  border-left: 1px solid grey;
+}
+
+.stage {
+  font-size: 13px;
+  color: rgba(25, 4, 69, 0.7);
+}
+
+.activity-tag {
+  
+}
+
+.stage-container{
+  overflow: auto;
+}
+
+.activity-time {
+ position: relative;
+ left: 135px;
+ font-size: 10px;
+}

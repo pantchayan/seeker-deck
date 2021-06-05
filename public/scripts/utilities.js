@@ -1,6 +1,8 @@
 const overlay = document.querySelector(".overlay");
 const jobDetailsHide = document.querySelector(".job-details-hiding");
 const addCard = document.querySelector(".job-card-container");
+const colorArr = document.querySelectorAll(".color-box");
+const tagArr = document.querySelectorAll(".tag");
 
 const colors = [
   "#0070fb",
@@ -126,9 +128,52 @@ let getJobData = async (id) => {
   return jobData;
 };
 
+let getJobDetailsData = async (id) => {
+  let jobDetailsData = await db.jobsDetails.get(id);
+  return jobDetailsData;
+};
+
+let getActivitesData = async (id) => {
+  let activitiesData = await db.activities.get(id);
+  return activitiesData;
+};
+
+let getContactsData = async (id) => {
+  let contactsData = await db.contacts.get(id);
+  return contactsData;
+};
+
+for (let i = 0; i < tagArr.length; i++) {
+  tagArr[i].addEventListener("click", () => {
+    for (let k = 0; k < tagArr.length; k++) {
+      tagArr[k].classList.remove("active");
+    }
+    tagArr[i].classList.add("active");
+  });
+}
+
+for (let i = 0; i < colorArr.length; i++) {
+  colorArr[i].style.backgroundColor = colors[i];
+
+  colorArr[i].addEventListener("click", () => {
+    for (let k = 0; k < colorArr.length; k++) {
+      colorArr[k].classList.remove("active-color");
+    }
+    colorArr[i].classList.add("active-color");
+  });
+}
+
+let reloadJobCard = (id, jobData) => {
+  let jobCard = document.getElementById(id);
+  jobCard.style.backgroundColor = colors[jobData.colorId];
+  jobCard.childNodes[0].childNodes[3].innerText = jobData.title;
+  jobCard.childNodes[0].childNodes[1].src = `https://logo.clearbit.com/${jobData.company}.com?size=40`;
+  jobCard.childNodes[4].innerText = jobData.company;
+};
+
 let renderJobDetails = async (id) => {
   let jobData = await getJobData(Number(id));
-
+  let jobDetailsData = await getJobDetailsData(Number(id));
   const logo = document.querySelector(".job-description-container .logo img");
   const role = document.querySelector(
     ".job-description-container .name-details .role"
@@ -136,14 +181,206 @@ let renderJobDetails = async (id) => {
   const companyName = document.querySelector(
     ".job-description-container .name-details .company"
   );
+  const jobIdDiv = document.querySelector(
+    ".main-description-container .job-id"
+  );
+
+  jobIdDiv.innerText = `Job:#${jobData.id}`;
+  jobIdDiv.setAttribute("jobid", jobData.id);
+  const companyInput = document.querySelector("#company-detail");
+  const titleInput = document.querySelector("#title-detail");
+  const categoryInput = document.querySelector("#category-detail");
+
+  const urlInput = document.querySelector("#url-input");
+  const salaryInput = document.querySelector("#salary-input");
+  const deadlineInput = document.querySelector("#deadline-input");
+  const descriptionInput = document.querySelector("#description-input");
+  const locationInput = document.querySelector("#location-input");
 
   logo.setAttribute(
     "src",
     `https://logo.clearbit.com/${jobData.company}.com?size=80`
   );
 
+  for (let k = 0; k < colorArr.length; k++) {
+    colorArr[k].classList.remove("active-color");
+  }
+
+  colorArr[jobData.colorId].classList.add("active-color");
+
   role.innerText = jobData.title;
   companyName.innerText = jobData.company;
+  companyInput.value = jobData.company;
+  titleInput.value = jobData.title;
+  categoryInput.value = jobData.category;
 
+  urlInput.value = "";
+  salaryInput.value = "";
+  deadlineInput.value = "";
+  descriptionInput.value = "";
+  locationInput.value = "";
+  if (jobDetailsData.url != "") {
+    urlInput.value = jobDetailsData.url;
+  }
+  if (jobDetailsData.salary != "") {
+    salaryInput.value = jobDetailsData.salary;
+  }
+  if (jobDetailsData.deadline != "") {
+    deadlineInput.value = jobDetailsData.deadline;
+  }
+  if (jobDetailsData.description != "") {
+    descriptionInput.value = jobDetailsData.description;
+  }
+  if (jobDetailsData.location != "") {
+    locationInput.value = jobDetailsData.location;
+  }
+  await renderTimeline(id);
   viewJobDetails();
+};
+
+let renderNotes = async (id) => {
+  let jobDetailsData = await getJobDetailsData(Number(id));
+
+  const notesArr = document.querySelectorAll(".note");
+  for (let i = notesArr.length - 1; i >= 0; i--) {
+    notesArr[i].remove();
+  }
+
+  for (let i = 0; i < jobDetailsData.notes.length; i++) {
+    let note = jobDetailsData.notes[i];
+    let timeCreated = "0s";
+    if (note.timestamp) {
+      timeCreated = getPassedTime(note.timestamp);
+    }
+
+    let noteDiv = document.createElement("div");
+    noteDiv.classList.add("note");
+
+    noteDiv.innerHTML = `<div class="note-content">${note.noteContent}</div>
+                    <div class="note-details">
+                      <span class="time">${timeCreated}</span>
+                      <div class="note-delete-btn">
+                        <span class="material-icons-outlined"> delete </span>
+                      </div>
+                    </div>`;
+
+    const notesContainer = document.querySelector(".note-blocks");
+    notesContainer.appendChild(noteDiv);
+  }
+
+  const noteDelBtnArr = document.querySelectorAll(".note-delete-btn");
+  for (let i = 0; i < noteDelBtnArr.length; i++) {
+    noteDelBtnArr[i].addEventListener("click", async (e) => {
+      jobDetailsData.notes.splice(i, 1);
+      await db.jobsDetails.put(jobDetailsData);
+      await renderNotes(id);
+    });
+  }
+};
+
+let renderActivities = async (id) => {
+  const activityArr = document.querySelectorAll(".activity-content");
+
+  for (let i = 0; i < activityArr.length; i++) {
+    activityArr[i].remove();
+  }
+
+  let jobData = await getJobData(Number(id));
+
+  let activityIdArr = jobData.activitiesId;
+  for (let i = 0; i < activityIdArr.length; i++) {
+    let activityData = await getActivitesData(activityIdArr[i]);
+    let timeCreated = getPassedTime(activityData.timestamp);
+    let activityDiv = document.createElement("div");
+    let tagColor = colors[i % 6];
+    activityDiv.classList.add("activity-content");
+    activityDiv.innerHTML = `<div class="content-value">${activityData.title}</div>
+                  <div class="tag-value" style="background-color: ${tagColor}; color:#fff;">${activityData.tag}</div>
+                  <div class="time-value">${timeCreated}</div>`;
+
+    const activityContainer = document.querySelector(
+      ".activities-container .activities"
+    );
+    activityContainer.appendChild(activityDiv);
+  }
+};
+
+let renderContacts = async (id) => {
+  const firstNameInput = document.querySelector("#first-name-input");
+  const lastNameInput = document.querySelector("#second-name-input");
+  const titleInput = document.querySelector("#contact-title-input");
+  const locationInput = document.querySelector("#contact-location-input");
+  const phoneInput = document.querySelector("#contact-phone-input");
+  const emailInput = document.querySelector("#contact-email-input");
+  const linkedinInput = document.querySelector("#contact-linkedin-input");
+
+  firstNameInput.value = "";
+  lastNameInput.value = "";
+  titleInput.value = "";
+  locationInput.value = "";
+  phoneInput.value = "";
+  emailInput.value = "";
+  linkedinInput.value = "";
+
+  const contactBlockArr = document.querySelectorAll(".contact-block");
+  for (let i = 0; i < contactBlockArr.length; i++) {
+    contactBlockArr[i].remove();
+  }
+
+  let jobDetailsData = await getJobDetailsData(Number(id));
+  let contactIdArr = jobDetailsData.contactsId;
+
+  for (let i = 0; i < contactIdArr.length; i++) {
+    let contactData = await getContactsData(contactIdArr[i]);
+
+    let contactDiv = document.createElement("div");
+    contactDiv.classList.add("contact-block");
+
+    contactDiv.innerHTML = `<div class="icon">
+                      <span class="material-icons-outlined"> portrait </span>
+                    </div>
+                    <div class="contact-info">
+                      <div class="contact-block-name">${contactData.name}</div>
+                      <div class="block-row">
+                        <div class="contact-block-title">${contactData.title}</div>
+                        <div class="contact-block-location">${contactData.location}</div>
+                      </div>
+                      <div class="contact-block-phone">${contactData.phone}</div>
+                      <div class="contact-block-email">${contactData.title}</div>
+                      <div class="contact-block-linkedin">
+                        <img src="./images/linkedin-svg.svg" alt="." height="15px" width="15px" />@${contactData.linkedin}
+                      </div>
+                    </div>`;
+
+    const contactsContainer = document.querySelector(".contact-blocks");
+    contactsContainer.appendChild(contactDiv);
+  }
+};
+
+let renderTimeline = async (id) => {
+  const stagesArr = document.querySelectorAll(".stage");
+  for (let i = 0; i < stagesArr.length; i++) {
+    stagesArr[i].remove();
+  }
+
+  let jobData = await getJobData(Number(id));
+
+  let activityIdArr = jobData.activitiesId;
+  for (let i = 0; i < activityIdArr.length; i++) {
+    let activityData = await getActivitesData(activityIdArr[i]);
+    let stageDiv = document.createElement("div");
+    stageDiv.classList.add("stage");
+    let dotColor = colors[i % 6];
+    let timeCreated = getPassedTime(activityData.timestamp);
+
+    stageDiv.innerHTML = `<div class="stage-container">
+                <div class="dot" style="background-color: ${dotColor};"></div>
+                <div class="activity-tag">${activityData.tag}</div>
+              </div>
+               <div class="activity-time">${timeCreated}</div>
+              <div class="next-line"></div>`;
+
+    const stagesContainer = document.querySelector(".stages");
+    stagesContainer.appendChild(stageDiv);
+  }
 };

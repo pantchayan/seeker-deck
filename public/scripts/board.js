@@ -1,14 +1,5 @@
 const jobAddBtnArr = document.querySelectorAll(".add-btn");
 
-const colors = [
-  "#0070fb",
-  "#25c47b",
-  "#ff3300",
-  "#6a4feb",
-  "#ffcd60",
-  "#1c3554",
-];
-
 let discardBtn = document.querySelector(".discard");
 let saveBtn = document.querySelector(".create-btns>.save");
 
@@ -48,7 +39,7 @@ let saveJobInput = (company, title, category) => {
     title: title,
     company: company,
     timestamp: Date.now(),
-    colorId: colorId,
+    colorId: Number(colorId),
     category: category,
     activitiesId: [activityId],
   };
@@ -70,6 +61,7 @@ let saveJobInput = (company, title, category) => {
     salary: "",
     location: "",
     description: "",
+    notes: [],
     contactsId: [],
   };
 
@@ -146,6 +138,7 @@ let renderJobCard = (job) => {
 
   jobCard.addEventListener("click", async (e) => {
     await renderJobDetails(job.id);
+    detailsNavArr[0].click();
   });
 };
 

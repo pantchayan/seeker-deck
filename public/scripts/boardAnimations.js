@@ -36,7 +36,14 @@ let onDrop = (event) => {
 let updateDB = async (id, newCategory) => {
   try {
     // console.log(id, newCategory);
-    await db.jobs.update(Number(id), { category: newCategory });
+    let jobData = await getJobData(Number(id));
+    let activityIdArr = jobData.activitiesId;
+    console.log(activityIdArr);
+    activityIdArr.push(Number(activityId));
+    await db.jobs.update(Number(id), {
+      category: newCategory,
+      activitiesId: activityIdArr,
+    });
 
     let activityObject = {
       id: activityId,
@@ -70,36 +77,42 @@ for (let i = 0; i < coloumnsArr.length; i++) {
 }
 
 (async () => {
-  await renderBoardUI();
+  try {
+    await renderBoardUI();
 
-  let jobContainerArr = document.querySelectorAll(".job-container");
+    let jobContainerArr = document.querySelectorAll(".job-container");
 
-  for (let i = 0; i < jobContainerArr.length; i++) {
-    let jobContainer = jobContainerArr[i];
-    let deleteBtn = jobContainer.childNodes[2];
+    for (let i = 0; i < jobContainerArr.length; i++) {
+      let jobContainer = jobContainerArr[i];
+      let deleteBtn = jobContainer.childNodes[2];
 
-    deleteBtn.addEventListener("click", (e) => {
-      jobContainer.remove();
-      let company = jobContainer.childNodes[4].innerText;
-      let title = jobContainer.childNodes[0].childNodes[3].innerText;
-      console.log(jobContainer.id, company, title);
-      deleteJobData(Number(jobContainer.id), title, company);
-    });
+      deleteBtn.addEventListener("click", (e) => {
+        jobContainer.remove();
+        let company = jobContainer.childNodes[4].innerText;
+        let title = jobContainer.childNodes[0].childNodes[3].innerText;
+        console.log(jobContainer.id, company, title);
+        deleteJobData(Number(jobContainer.id), title, company);
+      });
 
-    jobContainer.addEventListener("mouseover", () => {
-      deleteBtn.classList.remove("hide");
-    });
+      jobContainer.addEventListener("mouseover", () => {
+        deleteBtn.classList.remove("hide");
+      });
 
-    jobContainer.addEventListener("mouseout", () => {
-      deleteBtn.classList.add("hide");
-    });
+      jobContainer.addEventListener("mouseout", () => {
+        deleteBtn.classList.add("hide");
+      });
 
-    jobContainer.addEventListener("dragstart", (e) => {
-      onDragStart(e);
-    });
+      jobContainer.addEventListener("dragstart", (e) => {
+        onDragStart(e);
+      });
 
-    jobContainer.addEventListener("click", async (e) => {
-      await renderJobDetails(jobContainer.id);
-    });
+      jobContainer.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) return;
+        await renderJobDetails(jobContainer.id);
+        detailsNavArr[0].click();
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
 })();
