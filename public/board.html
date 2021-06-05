@@ -17,19 +17,33 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./style/board.css" />
-    <link rel="stylesheet" href="./style/jobDetails.css" />
-    <link rel="stylesheet" href="./style/activityDetails.css" />
-    <link rel="stylesheet" href="./style/timeline.css" />
-    <link rel="stylesheet" href="./style/contact.css" />
+    <link rel="stylesheet" href="./style/board-components/board.css" />
+    <link rel="stylesheet" href="./style/board-components/jobDetails.css" />
+    <link rel="stylesheet" href="./style/board-components/activityDetails.css" />
+    <link rel="stylesheet" href="./style/board-components/timeline.css" />
+    <link rel="stylesheet" href="./style/board-components/contact.css" />
+    <link rel="stylesheet" href="./style/board-components/topNav.css" />
   </head>
   <body>
     <div class="hide overlay"></div>
     <div class="board-display">
-      <div class="side-nav"></div>
+      <div class="side-nav">Hello</div>
 
       <div class="container">
-        <div class="top-bar"></div>
+        <div class="top-bar">
+          <div class="board-btn">
+            <a href="/board">Board</a>
+          </div>
+          <div class="chart-btn">
+            <a href="/stats">Statistics</a>
+          </div>
+          <div class="portal-btn">
+            <a href="/portal">Job's Portal</a>
+          </div>
+          <div class="about-btn">
+            <a href="/about">About</a>
+          </div>
+        </div>
 
         <div class="category-container">
           <div id="wishlist" class="category">
@@ -167,6 +181,10 @@
           <button class="save">Save Job</button>
         </div>
       </div>
+    </div>
+
+    <div class="hide category-card-wrapper">
+      <div class="category-detail-card"></div>
     </div>
 
     <div class="hide job-details-hiding">
@@ -476,12 +494,13 @@
       </div>
     </div>
 
+    <!-- <script src="./scripts/dexie.js" defer></script> -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js" defer></script>
-    <script src="./scripts/boardDB.js" defer></script>
-    <script src="scripts/utilities.js" defer></script>
-    <script src="./scripts/board.js" defer></script>
-    <script src="./scripts/boardAnimations.js" defer></script>
-    <script src="./scripts/jobDetail.js" defer></script>
+    <script src="./scripts/board-scripts/boardDB.js" defer></script>
+    <script src="./scripts/board-scripts/utilities.js" defer></script>
+    <script src="./scripts/board-scripts/board.js" defer></script>
+    <script src="./scripts/board-scripts/boardAnimations.js" defer></script>
+    <script src="./scripts/board-scripts/jobDetail.js" defer></script>
     <!-- <script defer>renderBoardUI();</script> -->
   </body>
 </html>

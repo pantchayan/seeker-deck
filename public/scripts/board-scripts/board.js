@@ -1,15 +1,35 @@
 const jobAddBtnArr = document.querySelectorAll(".add-btn");
-
-let discardBtn = document.querySelector(".discard");
+const categoryBtnArr = document.querySelectorAll(".name span:nth-child(3)");
+let discardBtnArr = document.querySelectorAll(".discard");
 let saveBtn = document.querySelector(".create-btns>.save");
+const categoriesArr = document.querySelectorAll(".category");
 
-discardBtn.addEventListener("click", () => hideJobCard());
+
+
+
+
+for (let i = 0; i < discardBtnArr.length; i++) {
+  discardBtnArr[i].addEventListener("click", () => {
+    console.log("discard clicked");
+    hideJobCard();
+    hideCategoryDetails();
+  });
+}
+
 saveBtn.addEventListener("click", () => getJobInput());
 // Applying click events to plus buttons ====================================
 for (let i = 0; i < jobAddBtnArr.length; i++) {
   let jobAddBtn = jobAddBtnArr[i];
   jobAddBtn.addEventListener("click", (e) => {
     viewJobCard();
+  });
+}
+
+for (let i = 0; i < categoryBtnArr.length; i++) {
+  categoryBtnArr[i].addEventListener("click", async () => {
+    await renderCategoryDetails(i);
+    // console.log()
+    viewCategoryDetails();
   });
 }
 
@@ -116,7 +136,10 @@ let renderJobCard = (job) => {
   const categoryContainer = document.getElementById(category);
   //   console.log(categoryContainer, category);
   categoryContainer.appendChild(jobCard);
-
+  const containerCount = document.querySelector(`#${category} .count`);
+  let count  = containerCount.innerText.split(" ")[0];
+  count++;
+  containerCount.innerText = count+" JOBS";
   console.log(jobCard.childNodes[2]);
   let deleteBtn = jobCard.childNodes[2];
 

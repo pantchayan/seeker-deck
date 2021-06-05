@@ -47,7 +47,7 @@ let updateDB = async (id, newCategory) => {
 
     let activityObject = {
       id: activityId,
-      tag: "Moved",
+      tag: `Moved to ${newCategory}`,
       title: `Job of id ${id} was shifted to ${newCategory}`,
       description: "",
       state: "complete",

@@ -1,6 +1,7 @@
 const overlay = document.querySelector(".overlay");
 const jobDetailsHide = document.querySelector(".job-details-hiding");
 const addCard = document.querySelector(".job-card-container");
+const categoryCard = document.querySelector(".category-card-wrapper");
 const colorArr = document.querySelectorAll(".color-box");
 const tagArr = document.querySelectorAll(".tag");
 
@@ -12,6 +13,16 @@ const colors = [
   "#ffcd60",
   "#1c3554",
 ];
+
+let viewCategoryDetails = () => {
+  overlay.classList.remove("hide");
+  categoryCard.classList.remove("hide");
+};
+
+let hideCategoryDetails = () => {
+  overlay.classList.add("hide");
+  categoryCard.classList.add("hide");
+};
 
 let viewJobDetails = () => {
   overlay.classList.remove("hide");
@@ -43,6 +54,7 @@ let hideJobCard = () => {
 overlay.addEventListener("click", () => {
   hideJobCard();
   hideJobDetails();
+  hideCategoryDetails();
 });
 
 let getPassedTime = (timestamp) => {
@@ -93,7 +105,10 @@ let renderBoardUI = async () => {
     let time = getPassedTime(job.timestamp);
     let category = job.category;
     let jobColor = colors[job.colorId];
-
+    const containerCount = document.querySelector(`#${category} .count`);
+    let count = containerCount.innerText.split(" ")[0];
+    count++;
+    containerCount.innerText = count + " JOBS";
     let jobCard = document.createElement("div");
     jobCard.innerHTML = `<div class="role-row">
                 <img
@@ -383,4 +398,85 @@ let renderTimeline = async (id) => {
     const stagesContainer = document.querySelector(".stages");
     stagesContainer.appendChild(stageDiv);
   }
+};
+
+let renderCategoryDetails = async (categoryId) => {
+  const cardContainer = document.querySelector(".category-detail-card");
+  cardContainer.innerHTML = ``;
+  const categoryArr = [
+    "wishlist",
+    "applied",
+    "test",
+    "interview",
+    "offer",
+    "rejected",
+  ];
+  const categoryIconArr = [
+    "auto_fix_high",
+    "content_paste",
+    "quiz",
+    "business_center",
+    "emoji_events",
+    "thumb_down",
+  ];
+  let category = categoryArr[categoryId];
+  let jobsData = await getJobs();
+
+  let activityCount = 0;
+  let contactCount = 0;
+  let jobCount = 0;
+  let jobIdArr = [];
+  for (let i = 0; i < jobsData.length; i++) {
+    if (jobsData[i].category === category) {
+      jobIdArr.push(jobsData[i].id);
+      activityCount += jobsData[i].activitiesId.length;
+      jobCount++;
+    }
+  }
+  for (let i = 0; i < jobIdArr.length; i++) {
+    let jobDetailsData = await getJobDetailsData(Number(jobIdArr[i]));
+    contactCount += jobDetailsData.contactsId.length;
+  }
+
+  let categoryDetailDiv = document.createElement("div");
+  categoryDetailDiv.classList.add("category-detail");
+
+  categoryDetailDiv.innerHTML = `<div class="category-detail-name">
+            <span class="material-icons-outlined"> ${
+              categoryIconArr[categoryId]
+            } </span>
+            <span>${categoryArr[categoryId].toUpperCase()}</span>
+          </div>
+          <div class="category-job-count"><span>Jobs present</span>${jobCount}</div>
+          <div class="category-contacts-count">
+            <span>Contacts present</span>${contactCount}
+          </div>
+          <div class="category-activities-count">
+            <span>Activities done</span>${activityCount}
+          </div>
+          <div class="category-del-btns">
+            <button class="discard">Discard</button>
+            <button class="delete">Clear category</button>
+          </div>`;
+
+  // const cardContainer = document.querySelector(".category-detail-card");
+  cardContainer.appendChild(categoryDetailDiv);
+
+  let discardBtn = document.querySelector(".category-del-btns .discard");
+  discardBtn.addEventListener("click", () => {
+    console.log("discard clicked");
+    hideJobCard();
+    hideCategoryDetails();
+  });
+
+  let clearBtn = document.querySelector(".category-del-btns .delete");
+  clearBtn.addEventListener("click", async ()=>{
+    for (let i = 0; i < jobsData.length; i++) {
+      if (jobsData[i].category === category) {
+        await db.jobs.delete(jobsData[i].id);
+      }
+    }
+    location.reload();
+    discardBtn.click();
+  })
 };

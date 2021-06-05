@@ -375,7 +375,7 @@ contactSaveBtn.addEventListener("click", async () => {
   };
 
   let activityObject = {
-    id: activityId,
+    id: Number(activityId),
     tag: "New contact added",
     title: `New contact added`,
     description: "",
@@ -383,7 +383,7 @@ contactSaveBtn.addEventListener("click", async () => {
     timestamp: Date.now(),
     jobsID: [Number(id)],
   };
-
+  jobData.activitiesId.push(Number(activityId));
   jobDetailsData.contactsId.push(Number(contactId));
   contactId++;
   activityId++;
@@ -391,7 +391,10 @@ contactSaveBtn.addEventListener("click", async () => {
     "seekerKeys",
     JSON.stringify({ jobId, activityId, contactId, colorId })
   );
+
+  console.log(activityObject);
   await db.contacts.put(contactObject);
+  await db.jobs.put(jobData);
   await db.jobsDetails.put(jobDetailsData);
   await db.activities.put(activityObject);
 

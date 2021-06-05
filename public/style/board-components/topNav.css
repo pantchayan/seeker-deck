@@ -1,0 +1,20 @@
+.top-bar {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar > div {
+  /* margin-top: 15px; */
+  margin-left: 30px;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: rgba(25, 4, 69, 0.061);
+}
+
+.top-bar > div > a {
+  font-weight: 700;
+  color: rgb(24, 0, 69);
+  text-decoration: none;
+}
