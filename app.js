@@ -34,7 +34,7 @@ const portalHTML = fs.readFileSync(`${__dirname}/public/portal.html`, "utf-8");
 
 const searchData = fs.readFileSync(`${__dirname}/data/search.json`, "utf-8");
 
-console.log("Hello from server");
+// console.log("Hello from server");
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -60,7 +60,7 @@ app.get("/about", (req, res) => {
 
 app.get("/search", async (req, res) => {
   try {
-    console.log("/SEARCH GET");
+    // console.log("/SEARCH GET");
 
     queries = req.query;
     console.log(queries.domain.split(" ").join("%"));
@@ -71,17 +71,17 @@ app.get("/search", async (req, res) => {
     let postingData = await response.json();
     let finalData;
     if (postingData.length == 0) {
-      console.log("Empty arr from API ", postingData);
+      // console.log("Empty arr from API ", postingData);
       finalData = JSON.parse(searchData);
     } else {
-      console.log(postingData);
+      // console.log(postingData);
       finalData = JSON.parse(postingData);
     }
     let jobListing = replaceTemplate(tempCard, finalData);
     let newPortal = portalHTML.replace(key, jobListing);
     res.status(200).end(newPortal);
   } catch (err) {
-    console.log("Error from server", err);
+    // console.log("Error from server", err);
   }
 });
 
