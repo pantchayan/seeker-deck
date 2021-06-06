@@ -1,3 +1,5 @@
+var PORT = process.env.PORT || 3000;
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -83,8 +85,7 @@ app.get("/search", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log("Hey server is now running on http://127.0.0.1:3000");
+  console.log("Hey server is now running on " + PORT);
 });
