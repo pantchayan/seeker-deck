@@ -74,7 +74,8 @@
 }
 
 .activity-container  {
-  overflow-y: auto !important;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .head-row {
@@ -89,6 +90,7 @@
 
 .activity-content {
   display: flex;
+  
   /* justify-content: space-evenly; */
   margin-top: 10px;
   margin-left: 60px;

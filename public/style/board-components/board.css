@@ -37,13 +37,17 @@ body {
 .category-container {
   display: flex;
   height: calc(100vh - 3rem);
+  /* max-height: fit-content; */
   width: calc(100vw - 15rem);
   overflow-x: auto;
+  overflow: auto;
 }
 
 .category {
   min-width: 320px;
   border-right: 0.5px solid lightgray;
+  flex-grow: 1;
+  overflow: auto;
 }
 
 /* ADD-JOB */
@@ -400,5 +404,3 @@ body {
 .details-nav > div > span {
   margin-right: 9px;
 }
-
-

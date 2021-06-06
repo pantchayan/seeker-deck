@@ -245,7 +245,9 @@ let renderJobDetails = async (id) => {
 
   logo.setAttribute(
     "src",
-    `https://logo.clearbit.com/${jobData.company}.com?size=80`
+    `https://logo.clearbit.com/${jobData.company
+      .split(" ")
+      .join("")}.com?size=80`
   );
 
   for (let k = 0; k < colorArr.length; k++) {
