@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Board</title>
-
+    <title>Seeker's Deck | Board</title>
+    <link rel="icon" href="./images/logo-png.png" type="image/x-icon" />
     <link
       href="http://fonts.googleapis.com/css?family=Lato:400,700"
       rel="stylesheet"
@@ -19,15 +19,41 @@
 
     <link rel="stylesheet" href="./style/board-components/board.css" />
     <link rel="stylesheet" href="./style/board-components/jobDetails.css" />
-    <link rel="stylesheet" href="./style/board-components/activityDetails.css" />
+    <link
+      rel="stylesheet"
+      href="./style/board-components/activityDetails.css"
+    />
     <link rel="stylesheet" href="./style/board-components/timeline.css" />
     <link rel="stylesheet" href="./style/board-components/contact.css" />
     <link rel="stylesheet" href="./style/board-components/topNav.css" />
+    <link rel="stylesheet" href="./style/board-components/sideNav.css" />
   </head>
   <body>
+    <!-- <div class="loader_bg">
+      <div class="loader"></div>
+    </div> -->
     <div class="hide overlay"></div>
     <div class="board-display">
-      <div class="side-nav">Hello</div>
+      <div class="side-nav">
+        <h1>Seeker's Deck</h1>
+        <div class="side-nav-info">
+          <div>Hello user, <img src="./images/hand-wave.png" alt="." height="17px" width="17px"></div>
+          <div>Your board overview:</div>
+          <div class="s-jobs-count">
+            <span>Total Jobs</span>0
+          </div>
+          <div class="s-activities-count">
+            <span>Total Activities</span>0
+          </div>
+          <div class="s-categories-count">
+            <span>Total Categories</span>6
+          </div>
+          <div class="s-contacts-count">
+            <span>Total Contacts</span>0
+          </div>
+        </div>
+        <button id="clear-board">Clear Board</button>
+      </div>
 
       <div class="container">
         <div class="top-bar">
@@ -493,6 +519,16 @@
         </div>
       </div>
     </div>
+
+
+    <!-- LOADER -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script defer>
+      setTimeout(function(){
+        $('.loader_bg').fadeToggle("slow", "swing");
+      },2000);
+    </script> -->
+    <!-- LOADER -->
 
     <!-- <script src="./scripts/dexie.js" defer></script> -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js" defer></script>

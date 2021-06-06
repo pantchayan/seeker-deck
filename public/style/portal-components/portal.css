@@ -1,7 +1,119 @@
 .portal-display {
   display: flex;
+  overflow: auto;
+}
+
+.side-nav h1 {
+  font-size: 2rem;
+  font-weight: 600;
+
+  margin-left: 5px;
+
+  margin-top: 5px;
 }
 
 .portal-container {
   width: 100%;
+}
+
+.top-bar > div:nth-child(3) {
+  background-color: #6a4feb;
+}
+
+.top-bar > div:nth-child(3) > a {
+  color: #fff;
+}
+
+.portal-inputs > form {
+  display: flex;
+  margin-left: 15rem;
+}
+
+.domain-input,
+.place-input {
+  margin-left: 5rem;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.domain-input span,
+.place-input span {
+  color: rgb(24, 0, 69);
+  font-weight: 600;
+}
+
+#l-input,
+#d-input {
+  font-size: 15px;
+  margin-top: 12px;
+  height: 2.5rem;
+  width: 10rem;
+  padding: 10px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+}
+
+button {
+  margin-top: 55px;
+  margin-left: 70px;
+  font-weight: 600;
+  font-size: 15px;
+  min-width: 70px;
+  height: fit-content;
+  padding: 5px;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+  border-radius: 5px;
+  color: #fff;
+  background-color: #6a4feb;
+}
+
+.Box {
+  width: 400px;
+}
+
+.job-posting-container {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.post-container {
+  height: 15rem;
+  width: 20rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-bottom: 3rem;
+}
+
+@keyframes jobHover {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.03);
+  }
+}
+
+.post-container:hover {
+  cursor: pointer;
+  animation: jobHover ease;
+  animation-duration: 0.5s;
+  transform: scale(1.03);
+  box-shadow: #6a4feb 0px 20px 30px -10px;
+}
+
+.post-container article,
+.post-container > div {
+  height: 100%;
+  width: 100%;
+}
+
+.job-posting-container > p {
+  display: none;
+}
+
+.post-container > article > a {
+  position: relative;
+  bottom: 10px;
 }

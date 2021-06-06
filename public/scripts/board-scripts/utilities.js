@@ -51,11 +51,12 @@ let hideJobCard = () => {
   categoryInput.value = "applied";
 };
 
-overlay.addEventListener("click", () => {
-  hideJobCard();
-  hideJobDetails();
-  hideCategoryDetails();
-});
+if (overlay)
+  overlay.addEventListener("click", () => {
+    hideJobCard();
+    hideJobDetails();
+    hideCategoryDetails();
+  });
 
 let getPassedTime = (timestamp) => {
   const currTime = Date.now();
@@ -94,6 +95,30 @@ let getJobs = async () => {
   return jobsData;
 };
 
+let getAllJobsDetail = async () => {
+  let jobsDetailsData = await db.jobsDetails.toArray();
+  return jobsDetailsData;
+};
+
+let getAllContacts = async () => {
+  let contactsData = await db.contacts.toArray();
+  return contactsData;
+};
+
+let renderSideNav = async () => {
+  let jobsData = await getJobs();
+  let contactsData = await getAllContacts();
+  let activitiesData = await db.activities.toArray();
+
+  const jobCountDiv = document.querySelector(".s-jobs-count");
+  const activityCountDiv = document.querySelector(".s-activities-count");
+  const contactCountDiv = document.querySelector(".s-contacts-count");
+
+  jobCountDiv.innerHTML = `<span>Total Jobs</span>${jobsData.length}`;
+  contactCountDiv.innerHTML = `<span>Total Contacts</span>${contactsData.length}`;
+  activityCountDiv.innerHTML = `<span>Total Activities</span>${activitiesData.length}`;
+};
+
 let renderBoardUI = async () => {
   let jobsData = await getJobs();
   //   console.table(jobsData);
@@ -112,7 +137,9 @@ let renderBoardUI = async () => {
     let jobCard = document.createElement("div");
     jobCard.innerHTML = `<div class="role-row">
                 <img
-                  src="https://logo.clearbit.com/${company}.com?size=40"
+                  src="https://logo.clearbit.com/${company
+                    .split(" ")
+                    .join("")}.com?size=40"
                   alt=""
                   height="30px"
                   width="30px"
@@ -136,6 +163,8 @@ let renderBoardUI = async () => {
     const categoryContainer = document.getElementById(category);
     categoryContainer.appendChild(jobCard);
   }
+
+  renderSideNav();
 };
 
 let getJobData = async (id) => {
@@ -182,7 +211,9 @@ let reloadJobCard = (id, jobData) => {
   let jobCard = document.getElementById(id);
   jobCard.style.backgroundColor = colors[jobData.colorId];
   jobCard.childNodes[0].childNodes[3].innerText = jobData.title;
-  jobCard.childNodes[0].childNodes[1].src = `https://logo.clearbit.com/${jobData.company}.com?size=40`;
+  jobCard.childNodes[0].childNodes[1].src = `https://logo.clearbit.com/${jobData.company
+    .split(" ")
+    .join("")}.com?size=40`;
   jobCard.childNodes[4].innerText = jobData.company;
 };
 
@@ -370,6 +401,7 @@ let renderContacts = async (id) => {
     const contactsContainer = document.querySelector(".contact-blocks");
     contactsContainer.appendChild(contactDiv);
   }
+  renderSideNav();
 };
 
 let renderTimeline = async (id) => {
@@ -470,7 +502,7 @@ let renderCategoryDetails = async (categoryId) => {
   });
 
   let clearBtn = document.querySelector(".category-del-btns .delete");
-  clearBtn.addEventListener("click", async ()=>{
+  clearBtn.addEventListener("click", async () => {
     for (let i = 0; i < jobsData.length; i++) {
       if (jobsData[i].category === category) {
         await db.jobs.delete(jobsData[i].id);
@@ -478,5 +510,18 @@ let renderCategoryDetails = async (categoryId) => {
     }
     location.reload();
     discardBtn.click();
-  })
+  });
 };
+
+document.getElementById("clear-board").addEventListener("click", async () => {
+  db.delete()
+    .then(() => {
+      console.log("Database successfully deleted");
+    })
+    .catch((err) => {
+      console.error("Could not delete database");
+    })
+    .finally(() => {
+      location.reload();
+    });
+});

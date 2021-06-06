@@ -51,9 +51,6 @@
   color: rgba(25, 4, 69, 0.7);
 }
 
-.activity-tag {
-}
-
 .stage-container {
   overflow: auto;
 }
@@ -140,7 +137,16 @@
 }
 
 .category-job-count,
-.category-contacts-count, .category-activities-count {
+.category-contacts-count,
+.category-activities-count {
   position: relative;
   right: 80px;
+}
+
+.top-bar > div:nth-child(1) {
+  background-color: #6a4feb;
+}
+
+.top-bar > div:nth-child(1) > a {
+  color: #fff;
 }

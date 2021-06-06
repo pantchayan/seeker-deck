@@ -2,6 +2,55 @@
   display: flex;
 }
 
+.side-nav h1 {
+  font-size: 2rem;
+  font-weight: 600;
+
+  margin-left: 5px;
+  
+  margin-top: 5px;
+}
+
 .stats-container {
   width: 100%;
+  overflow: auto;
+}
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+}
+
+.top-bar > div:nth-child(2) {
+  background-color: #6a4feb;
+}
+
+.top-bar > div:nth-child(2) > a {
+  color: #fff;
+}
+/* 
+.canvas{
+  height: 100%;
+  width: 100%;
+} */
+.chart-container div:nth-child(1),
+.chart-container div:nth-child(4),
+.chart-container div:nth-child(5) {
+  margin-top: 5rem;
+  height: 15rem;
+  width: 35rem;
+}
+
+.chart-container div:nth-child(2),
+.chart-container div:nth-child(3),
+.chart-container div:nth-child(6) {
+  margin-left: 10rem;
+  height: 20rem;
+  width: 25rem;
+}
+
+.chart {
+  margin: 30px;
 }

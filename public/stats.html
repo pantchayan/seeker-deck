@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Statistics</title>
+    <title>Seeker's Deck | Statistics</title>
+
+    <link rel="icon" href="./images/logo-png.png" type="image/x-icon" />
     <link
       href="http://fonts.googleapis.com/css?family=Lato:400,700"
       rel="stylesheet"
@@ -18,18 +20,36 @@
 
     <link rel="stylesheet" href="./style/board-components/board.css" />
     <link rel="stylesheet" href="./style/board-components/jobDetails.css" />
-    <link rel="stylesheet" href="./style/board-components/activityDetails.css" />
-    <link rel="stylesheet" href="./style/board-components/timeline.css" />
+    <link
+      rel="stylesheet"
+      href="./style/board-components/activityDetails.css"
+    />
+    <!-- <link rel="stylesheet" href="./style/board-components/timeline.css" /> -->
     <link rel="stylesheet" href="./style/board-components/contact.css" />
     <link rel="stylesheet" href="./style/board-components/topNav.css" />
     <link rel="stylesheet" href="./style/stats-compoenents/stats.css" />
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+    <link rel="stylesheet" href="./style/board-components/sideNav.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
+      integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
   <body>
+    <!-- <div class="loader_bg">
+      <div class="loader"></div>
+    </div> -->
     <div class="stats-display">
       <div class="side-nav">
-        <h1>STATISTICS USING CHART.JS</h1>
+        <h1>Statistics</h1>
+        <div class="side-nav-info">
+          <div>These stats correlate to your data. 📈</div>
+          <br>
+          <div>Helpful in generating insight to further make calculated and good decisions.</div>
+        </div>
       </div>
       <div class="stats-container container">
         <div class="top-bar">
@@ -48,23 +68,40 @@
         </div>
 
         <div class="chart-container">
+          <div class="chart">
+            <canvas id="chart-1"></canvas>
+          </div>
+          <div class="chart">
+            <canvas id="chart-4"></canvas>
+          </div>
+          <div class="chart">
+            <canvas id="chart-5"></canvas>
+          </div>
 
+          <div class="chart">
+            <canvas id="chart-2"></canvas>
+          </div>
+
+          <div class="chart">
+            <canvas id="chart-3"></canvas>
+          </div>
+          <div class="chart">
+            <canvas id="chart-6"></canvas>
+          </div>
         </div>
-
-
-
-
-
-
-
-
-
-
       </div>
     </div>
-
-
-
-
+    <!-- LOADER -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script defer>
+      setTimeout(function(){
+        $('.loader_bg').fadeToggle("slow", "swing");
+      },2000);
+    </script> -->
+    <!-- LOADER -->
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js" defer></script>
+    <script src="./scripts/board-scripts/boardDB.js" defer></script>
+    <script src="./scripts/board-scripts/utilities.js" defer></script>
+    <script src="./scripts/stats-scripts/stats.js" defer></script>
   </body>
 </html>

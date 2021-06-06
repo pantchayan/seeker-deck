@@ -5,3 +5,149 @@
 .about-container {
   width: 100%;
 }
+
+.side-nav h1 {
+  font-size: 2rem;
+  font-weight: 600;
+
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.top-bar > div:nth-child(4) {
+  background-color: #6a4feb;
+}
+
+.top-bar > div:nth-child(4) > a {
+  color: #fff;
+}
+
+.about-wrapper {
+  margin-left: 50px;
+}
+
+.about-project {
+  height: 100%;
+  background: #c6cacc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Monospace !important;
+}
+
+/* div{
+    box-sizing: border-box;
+} */
+.lang {
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  margin: 0 auto;
+}
+.lg {
+  color: #1771a7;
+  margin: 0 15px;
+  font-size: 17px;
+}
+.lang-a {
+  margin: 0 15px;
+}
+.about_me {
+  min-width: 55%;
+  min-height: 90%;
+  background: #2b2b2b;
+  padding: 15px;
+  font-size: 21px;
+  color: rgb(41, 41, 41);
+  text-align: justify;
+  
+  border-radius: 5px;
+}
+.php {
+  word-spacing: -8px;
+  color: #ad7aff;
+  display: block;
+  font-weight: 700;
+}
+.function {
+  padding-left: 15px;
+  color: #ac9ef3;
+}
+.functionName {
+  color: #b7b8b8;
+}
+.BracketLeft {
+  color: #bababa;
+}
+.BracketRight {
+  display: block;
+  color: #bababa;
+  padding-left: 15px;
+}
+.p_teg {
+  word-spacing: -8px;
+  display: block;
+  padding-left: 15px;
+  color: #e7be5f;
+}
+.about_text {
+  font-size: 16px;
+  /* padding-left: 10px; */
+  color: #fff;
+}
+.contact_text {
+  font-size: 15px;
+  padding-left: 10px;
+  color: #fff;
+}
+.text1 {
+  display: block;
+
+  margin: -17px 0 0 0;
+}
+.text {
+  display: block;
+
+  /*margin: -17px 0 0 0;*/
+}
+.text2 {
+  display: block;
+  font-size: 15px;
+  margin: 0 0 -17px 0;
+}
+.a {
+  font-size: 16px;
+  color: #fff;
+  /*text-decoration: none;*/
+}
+.a:hover {
+  color: #1771a7;
+  text-decoration: underline;
+}
+
+.functionName.await {
+  margin-left: 30px;
+}
+
+.function.promise,
+.functionName.await {
+  font-size: 17px;
+}
+
+div.space {
+  height: 20px;
+}
+
+.function,
+.functionName {
+  font-size: 21px;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+a {
+  color: #ad7aff;
+  text-decoration: underline;
+}

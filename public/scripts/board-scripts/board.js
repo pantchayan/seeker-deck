@@ -4,10 +4,6 @@ let discardBtnArr = document.querySelectorAll(".discard");
 let saveBtn = document.querySelector(".create-btns>.save");
 const categoriesArr = document.querySelectorAll(".category");
 
-
-
-
-
 for (let i = 0; i < discardBtnArr.length; i++) {
   discardBtnArr[i].addEventListener("click", () => {
     console.log("discard clicked");
@@ -111,7 +107,9 @@ let renderJobCard = (job) => {
   let jobCard = document.createElement("div");
   jobCard.innerHTML = `<div class="role-row">
                 <img
-                  src="https://logo.clearbit.com/${company}.com?size=40"
+                  src="https://logo.clearbit.com/${company
+                    .split(" ")
+                    .join("")}.com?size=40"
                   alt=""
                   height="30px"
                   width="30px"
@@ -137,10 +135,9 @@ let renderJobCard = (job) => {
   //   console.log(categoryContainer, category);
   categoryContainer.appendChild(jobCard);
   const containerCount = document.querySelector(`#${category} .count`);
-  let count  = containerCount.innerText.split(" ")[0];
+  let count = containerCount.innerText.split(" ")[0];
   count++;
-  containerCount.innerText = count+" JOBS";
-  console.log(jobCard.childNodes[2]);
+  containerCount.innerText = count + " JOBS";
   let deleteBtn = jobCard.childNodes[2];
 
   deleteBtn.addEventListener("click", () => {
@@ -163,6 +160,7 @@ let renderJobCard = (job) => {
     await renderJobDetails(job.id);
     detailsNavArr[0].click();
   });
+  renderSideNav();
 };
 
 let deleteJobData = (id, title, company) => {
@@ -190,4 +188,5 @@ let deleteJobData = (id, title, company) => {
     "seekerKeys",
     JSON.stringify({ jobId, activityId, contactId, colorId })
   );
+  renderSideNav();
 };
