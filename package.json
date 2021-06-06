@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "job-scraper": "^2.4.0"
+    "job-scraper": "^2.4.0",
+    "node-fetch": "^2.6.1"
   }
-  
 }
