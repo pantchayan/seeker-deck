@@ -249,12 +249,12 @@ let renderJobDetails = async (id) => {
       .split(" ")
       .join("")}.com?size=80`
   );
-
+  console.log(colorArr[0].classList)
   for (let k = 0; k < colorArr.length; k++) {
     colorArr[k].classList.remove("active-color");
   }
 
-  colorArr[jobData.colorId].classList.add("active-color");
+  //colorArr[jobData.colorId].classList.add("active-color");
 
   role.innerText = jobData.title;
   companyName.innerText = jobData.company;

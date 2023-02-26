@@ -4,13 +4,14 @@
   "description": "Job Application Tracker",
   "main": "app.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chayan Pant",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "job-scraper": "^2.4.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.9"
   }
 }
